@@ -1,0 +1,7 @@
+{
+  "name": "SportSee",
+  "packageManager": "yarn@4.13.0",
+  "dependencies": {
+    "yarn": "~1.22.22"
+  }
+}
