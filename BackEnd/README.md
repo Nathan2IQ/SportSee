@@ -31,7 +31,7 @@ If you are working with several versions of NodeJS, we recommend you install [nv
 ### 2.2 Starting the project
 
 - The `docker image build --no-cache -t micro-api .` command will allow you to build your image.
-- The `docker container run --name micro-api -p 8000:8000 -dt micro-api yarn` command will allow you to create your Docker container and run your image on port 8000.
+- The `docker container run --name micro-api -p 8000:8000 -d micro-api` command will allow you to create your Docker container and run your image on port 8000.
 - The `docker container stop micro-api` command will allow you to stop your micro-api.
 - The `docker container rm micro-api` command will allow you to delete your micro-api container.
 
