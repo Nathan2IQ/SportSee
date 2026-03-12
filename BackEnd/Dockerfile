@@ -1,8 +1,10 @@
 FROM node:lts-alpine
 
-ADD . /app/
+COPY . /app/
 WORKDIR /app
 
-RUN yarn
+RUN npm ci 
 
 EXPOSE 8000
+
+CMD [ "npm", "run", "dev" ]
