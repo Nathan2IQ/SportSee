@@ -1,0 +1,18 @@
+$kind: collection
+name: SportSee API
+description: >-
+  API collection for SportSee running/fitness tracking application.
+
+
+  ## Authentication
+
+  Most endpoints require Bearer token authentication. Use the Login endpoint to
+  obtain a token.
+
+
+  ## Base URL
+
+  Default: http://localhost:8000
+variables:
+  baseUrl: http://localhost:8000
+  token: ""

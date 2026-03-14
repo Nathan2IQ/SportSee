@@ -1,0 +1,19 @@
+$kind: http-request
+name: Get User Info
+method: GET
+url: '{{baseUrl}}/api/user-info'
+order: 1000
+description: |-
+  Returns user information including profile, goals, and statistics.
+  
+  **Response includes:**
+  - profile: firstName, lastName, age, weight, height, profilePicture, createdAt
+  - statistics: totalDistance, totalSessions, totalDuration
+headers:
+  - key: Content-Type
+    value: application/json
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{token}}'

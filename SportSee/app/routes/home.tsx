@@ -10,20 +10,33 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <div className="flex h-[calc(100vh-110px)]">
-      {/* Section gauche - Formulaire de connexion */}
-      <div className="w-1/2 flex items-center justify-center p-12">
-        <LoginForm />
-      </div>
-
-      {/* Section droite - Image */}
-      <div className="w-1/2 h-full relative overflow-hidden">
+    <>
+      {/* Image de fond fixe sur toute la hauteur */}
+      <div className="fixed top-0 right-0 w-1/2 h-screen z-0">
         <img
-          src="#"
+          src="/public/login_bg.jpg"
           alt="Sport et fitness"
           className="w-full h-full object-cover"
         />
       </div>
-    </div>
+
+      {/* Contenu principal */}
+      <div className="relative z-10 flex h-[calc(100vh-105px)] overflow-hidden">
+        {/* Section gauche - Formulaire de connexion */}
+        <div className="w-1/2 flex items-center justify-center">
+          <LoginForm />
+        </div>
+
+        {/* Section droite - Texte par-dessus l'image */}
+        <div className="w-1/2 flex items-end justify-end p-8">
+          <div className="bg-white flex items-center justify-center w-90 h-20 p-4 rounded-4xl">
+            <p className="text-[#0B23F4] text-center">
+              Analysez vos performances en un clin d'oeil, suivez vos progrès et
+              atteignez vos objectifs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

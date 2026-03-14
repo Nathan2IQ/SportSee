@@ -1,0 +1,4 @@
+$kind: collection
+name: Authentication
+description: Authentication endpoints for obtaining access tokens
+order: 1000

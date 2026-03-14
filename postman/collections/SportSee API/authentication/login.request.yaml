@@ -1,0 +1,19 @@
+$kind: http-request
+name: Login
+method: POST
+url: '{{baseUrl}}/api/login'
+order: 1000
+description: |-
+  Authenticate a user and receive a JWT token.
+  
+  Use the returned token in the Authorization header for subsequent requests.
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "sophiemartin",
+      "password": "password123"
+    }
