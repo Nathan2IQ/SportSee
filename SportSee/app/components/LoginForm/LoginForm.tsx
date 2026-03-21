@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 // @ts-ignore
 import { api } from "../../utils/api";
+import Cookies from "js-cookie";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -16,8 +17,8 @@ export default function LoginForm() {
     try {
       const data = await api.login(username, password);
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.userId);
+      Cookies.set("token", data.token);
+      Cookies.set("userId", data.userId);
 
       navigate("/dashboard");
     } catch (err) {

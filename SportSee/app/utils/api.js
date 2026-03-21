@@ -1,8 +1,10 @@
+import Cookies from "js-cookie";
+
 const API_URL = "http://localhost:8000/api";
 
 // Helper pour les appels
 async function fetchAPI(endpoint, options = {}) {
-  const token = localStorage.getItem("token");
+  const token = Cookies.get("token");
 
   const res = await fetch(`${API_URL}${endpoint}`, {
     ...options,

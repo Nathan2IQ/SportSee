@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
+import Cookies from "js-cookie";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -23,8 +24,8 @@ export default function Header() {
             to="/"
             className="text-[#0B23F4] text-lg text-[14px] "
             onClick={() => {
-              localStorage.removeItem("token");
-              localStorage.removeItem("userId");
+              Cookies.remove("token");
+              Cookies.remove("userId");
               navigate("/");
             }}
           >

@@ -14,7 +14,7 @@ export default function Home() {
       {/* Image de fond fixe sur toute la hauteur */}
       <div className="fixed top-0 right-0 w-1/2 h-screen z-0">
         <img
-          src="/public/login_bg.jpg"
+          src="/login_bg.jpg"
           alt="Sport et fitness"
           className="w-full h-full object-cover"
         />
