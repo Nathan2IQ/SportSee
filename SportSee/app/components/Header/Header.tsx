@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
+//@ts-ignore
+import Logo from "../Logo/Logo";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ export default function Header() {
     <header>
       <div className="container mx-auto px-6 py-6 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
+          <Logo />
           <div className="text-[#0B23F4] text-3xl font-bold">SPORTSEE</div>
         </Link>
 

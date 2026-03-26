@@ -1,0 +1,50 @@
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 60px;
+  padding: 10px;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 100%;
+}
+
+.bar {
+  width: 6px;
+  background: linear-gradient(to top, #0066ff, #ff6b35 50%);
+  border-radius: 3px;
+  animation: growBar 5s ease infinite;
+
+  &.bar-1 {
+    height: 70%;
+    margin-bottom: 5px;
+  }
+  &.bar-2 {
+    height: 100%;
+  }
+  &.bar-3 {
+    height: 60%;
+    margin-bottom: 8px;
+  }
+  &.bar-4 {
+    height: 60%;
+  }
+  &.bar-5 {
+    height: 80%;
+    margin-bottom: 7px;
+  }
+}
+
+@keyframes growBar {
+  0%,
+  100% {
+    transform: scaleY(0.6);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
