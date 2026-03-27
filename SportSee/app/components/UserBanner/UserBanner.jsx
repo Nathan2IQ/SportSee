@@ -1,6 +1,4 @@
 export default function UserBanner({ userInfo }) {
-  // Plus besoin de useState ni useEffect !
-
   return (
     <div className="bg-linear-to-t from-[#F2F3FF] to-white p-4 rounded-3xl mb-4 flex gap-4 m-20 w-100% justify-between">
       <div className="flex items-center gap-10 m-4">

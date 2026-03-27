@@ -8,12 +8,61 @@ import DurationCard from "../components/WeekPerf/DurationCard";
 import DistanceCard from "../components/WeekPerf/DistanceCard";
 import Footer from "../components/Footer/Footer";
 import { api } from "../utils/api";
+import mockData from "../data/data.json";
+import { useDataSource } from "../utils/mockData";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const { dataSource } = useDataSource();
 
   useEffect(() => {
+    if (dataSource === "mock") {
+      const user = mockData[0];
+      const now = new Date();
+
+      const filteredActivity = user.runningData.filter((session) => {
+        const sessionDate = new Date(session.date);
+        return sessionDate <= now;
+      });
+      const totalDistance = filteredActivity
+        .reduce((sum, session) => sum + session.distance, 0)
+        .toFixed(1);
+
+      const totalSessions = filteredActivity.length;
+
+      const totalDuration = filteredActivity.reduce(
+        (sum, session) => sum + session.duration,
+        0,
+      );
+
+      setData({
+        userInfo: {
+          profile: {
+            firstName: user.userInfos.firstName,
+            lastName: user.userInfos.lastName,
+            createdAt: user.userInfos.createdAt,
+            age: user.userInfos.age,
+            weight: user.userInfos.weight,
+            height: user.userInfos.height,
+            profilePicture: user.userInfos.profilePicture,
+          },
+          statistics: {
+            totalDistance,
+            totalSessions,
+            totalDuration,
+          },
+          weeklyGoal: user.weeklyGoal,
+        },
+        userActivity: filteredActivity,
+      });
+
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(true);
+
     Promise.all([
       api.getUserActivity("2025-01-01", "2026-12-31"), // Toute l'année
       api.getUserInfo(),
@@ -26,7 +75,7 @@ export default function Dashboard() {
         console.error(error);
         setIsLoading(false);
       });
-  }, []);
+  }, [dataSource]);
 
   // Calculer les dates de la semaine
   const getWeekDates = () => {
@@ -59,24 +108,33 @@ export default function Dashboard() {
   return (
     <div>
       <UserBanner userInfo={data.userInfo} />
+
       <h2 className="text-3xl font-medium mt-40 ml-20 mb-10">
         Vos dernières performances
       </h2>
+
       <div className="flex m-20 gap-10 justify-between">
         <LastPerfKm userActivity={data.userActivity} />
         <LastPerfBpm userActivity={data.userActivity} />
       </div>
+
       <h2 className="text-3xl font-medium mt-20 ml-20">Cette semaine</h2>
       <p className="text-lg font-semibold text-[#707070] mt-2 ml-20">
         {getWeekDates()}
       </p>
+
       <div className="flex">
-        <WeekPerf userActivity={data.userActivity} weeklyGoal={2} />
+        <WeekPerf
+          userActivity={data.userActivity}
+          weeklyGoal={data.userInfo.weeklyGoal}
+        />
+
         <div className="flex mt-10 w-2/5 gap-10 flex-col items-center">
           <DurationCard userActivity={data.userActivity} />
           <DistanceCard userActivity={data.userActivity} />
         </div>
       </div>
+
       <Footer />
     </div>
   );

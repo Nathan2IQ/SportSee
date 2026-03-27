@@ -10,6 +10,8 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import Header from "./components/Header/Header";
+//@ts-ignore
+import { DataSourceProvider } from "./utils/mockData";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,8 +36,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="bg-[#F2F3FF]">
-        <Header />
-        {children}
+        <DataSourceProvider>
+          <Header />
+          {children}
+        </DataSourceProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
